@@ -1,0 +1,235 @@
+{% include "nav(logged).html" %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'error' %}
+    <div class="alert alert-danger after-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" area-label="Close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    {% else %}
+    <div class="alert alert-success alter-dismissable fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/w3.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/blue.css') }}"> -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <!-- //cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <!-- <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script> -->
+    <title>Document</title>
+</head>
+
+<body>
+      <div class="container text-bg-warning my-2">
+        <h1 style="text-align: center;">What is HDS?</h1>
+      </div>
+      <div class="container">
+        <div class="row  justify-content-center">
+            <div class="col-md-9 col-sm-9" style="text-align: justify;">
+              The project “Health Discernment System” has vast scope, with the development and continues evolving 
+              of technology this project will be able to handle most of the chronic diseases. <br><br>
+              This system will aid in the efficient detection of medical diagnostic data and will shorten the time
+               required to prevent the last-minute rush. In this system, I will build a user-friendly interference 
+               so that even a user who is unfamiliar with the disease may use it and obtain their result, i.e. the 
+               result being positive or normal when detecting the sickness. This approach will save the patient a 
+               lot of time since they will not have to go to their doctor to have the results validated. They can 
+               receive the results whenever and wherever they choose.    
+            </div>
+            <div class="col-md-3 col-sm-3">
+              <img src="{{ url_for('static', filename='css/Black Simple Monoline Real Estate Service Logo.png') }}" height="250" alt="Logo">
+            </div>
+        </div>
+      </div>
+      <!-- --------------- VERY IMPORTANT ----------- -->
+      <!-- <div class="container text-bg-danger my-4">
+        <h1 style="text-align: center;">Your History</h1>
+      </div>
+    <div class="container my-4">
+        <table class="table" id="myTable">
+            <thead>
+                <tr>
+                    <th scope="col">SNo</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Disease</th>
+                    <th scope="col">Probability</th>
+                    <th scope="col">Need Report?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">S.No.</th>
+                    <td>Shibli</td>
+                    <td>20-04-23</td>
+                    <td>Amar hai ham</td>
+                    <td>0</td>
+                    <td>Ghanta</td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+    
+    <div class="container my-4">
+        <div class="container text-bg-danger my-4">
+            <h1 style="text-align: center;">About the values to input</h1>
+          </div>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Diabetes
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body" style="text-align:justify;">
+                  <strong>Pregnancies: </strong>This refers to the number of times the patient has been pregnant.<br>
+                  <strong>Glucose Level: </strong>This is the patient's plasma glucose concentration measured two hours after an oral glucose tolerance test. Elevated glucose levels may indicate diabetes.<br>
+                  <strong>Blood Pressure Level: </strong>This is the patient's diastolic blood pressure. High blood pressure can be a risk factor for diabetes.<br>
+                  <strong>Skin Thickness: </strong>This is the thickness of the skin on the triceps, measured in millimeters. Increased skin thickness may be associated with insulin resistance, which is a key factor in the development of type 2 diabetes.<br>
+                  <strong>Insulin Level: </strong>This is the patient's 2-hour serum insulin level. Elevated insulin levels may indicate insulin resistance, which is a risk factor for diabetes.<br>
+                  <strong>Body Mass Index: </strong>This is the patient's body mass index, calculated as weight in kilograms divided by height in meters squared. High BMI is a risk factor for diabetes.<br>
+                  <strong>Diabetes Pedigree Function: </strong> This is a measure of the patient's family history of diabetes.<br>
+                  <strong>Age: </strong>This is the patient's age in years. As age increases, the risk of developing diabetes also increases.<br>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Heart Disease
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body" style="text-align:justify;">
+                  <strong>Age: </strong>This refers to the patient's age in years. Age is a risk factor for heart disease, as the risk of developing heart disease increases with age.<br>
+                  <strong>Sex: </strong>This refers to the patient's biological sex. Men are generally at higher risk for heart disease than women, although the risk for women increases after menopause.<br>
+                  <strong>Chest Pain Type: </strong> This refers to the type of chest pain or discomfort experienced by the patient. There are four values for chest pain type, each corresponding to a different type of chest pain or discomfort. This variable can provide insight into the underlying cause of the patient's symptoms and can help guide diagnosis and treatment.<br>
+                  <strong>Resting Blood Pressure: </strong>This refers to the patient's blood pressure when they are at rest. High blood pressure is a risk factor for heart disease.<br>
+                  <strong>Serum cholesterol: </strong>This is the patient's serum cholesterol level, measured in milligrams per deciliter (mg/dL). High cholesterol is a risk factor for heart disease.<br>
+                  <strong>Fasting Blood Sugar: </strong>This indicates whether the patient has a fasting blood sugar level above 120 mg/dL, which may indicate diabetes or pre-diabetes. Diabetes is a risk factor for heart disease.<br>
+                  <strong>Resting Electrocardiographic Result: </strong><br>
+                  <strong>Maximum Heart Rate Achieved: </strong>This refers to the highest heart rate achieved by the patient during a stress test. This variable can provide insight into the patient's cardiovascular fitness and can help guide diagnosis and treatment.<br>
+                  <strong>Exercise Induced Angina: </strong>This indicates whether the patient experienced chest pain or discomfort during a stress test. This can be a sign of underlying heart disease.<br>
+                  <strong>Oldpeak: </strong> This variable measures the amount of ST segment depression on the patient's ECG during a stress test. ST depression can be a sign of underlying heart disease.<br>
+                  <strong>Slope of Peak: </strong> This variable describes the shape of the ST segment on the patient's ECG during a stress test. The slope of the ST segment can provide additional information about the underlying heart condition.<br>
+                  <strong>Number of Major Vessels: </strong>This refers to the number of major blood vessels in the heart that appear to be blocked or narrowed on a fluoroscopy image. This variable can provide insight into the extent of the patient's heart disease.<br>
+                  <strong>Thal: </strong>This variable describes the patient's thallium stress test results, which measure blood flow to the heart during exercise. There are three values for this variable, each corresponding to a different result on the thallium stress test. This variable can provide additional information about the underlying heart condition.<br>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Liver Disease
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body" style="text-align:justify;">
+                  <strong>Age: </strong>This refers to the patient's age in years. Age is a risk factor for heart disease, as the risk of developing heart disease increases with age.<br>
+                  <strong>Gender: </strong>This refers to the patient's biological sex. Men are generally at higher risk for heart disease than women, although the risk for women increases after menopause.<br>
+                  <strong>Total Bilirubin: </strong>Bilirubin is a waste product that is produced when red blood cells break down. Total bilirubin measures the total amount of bilirubin in the blood, including both direct and indirect bilirubin.<br>
+                  <strong>Direct Bilirubin: </strong>: Direct bilirubin measures the amount of bilirubin that is excreted by the liver into the bile ducts.<br>
+                  <strong>Alkaline Phosphotase: </strong>Alkaline phosphatase is an enzyme that is found in many tissues throughout the body, including the liver. Elevated levels of alkaline phosphatase can be a sign of liver disease.<br>
+                  <strong>Alamine Aminotranferase: </strong>It is an enzyme that is found primarily in the liver. Elevated levels of ALT can be a sign of liver damage or disease.<br>
+                  <strong>Aspartate Aminotranferase: </strong>It is an enzyme that is found in many tissues throughout the body, including the liver. Elevated levels of AST can be a sign of liver damage or disease.<br>
+                  <strong>Total Protiens: </strong>Total proteins measures the total amount of proteins in the blood, including both albumin and globulin.<br>
+                  <strong>Albumin: </strong>Albumin is a protein that is produced by the liver. Low levels of albumin can be a sign of liver disease.<br>
+                  <strong>Albumin and Globulin Ratio: </strong> The albumin and globulin ratio compares the amount of albumin to the amount of globulin in the blood. This ratio can provide additional information about the patient's liver function and overall health.<br>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  Breast Cancer
+                </button>
+              </h2>
+              <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body" style="text-align:justify;">
+                  <strong>Radius: </strong>The mean distance from the center of the tumor to its perimeter.<br>
+                  <strong>Texture: </strong>The standard deviation of the gray-scale values in the image of the tumor.<br>
+                  <strong>Perimter: </strong>The total length of the tumor boundary.<br>
+                  <strong>Area: </strong>The area of the tumor.<br>
+                  <strong>Smoothness: </strong>The local variation in radius lengths.<br>
+                  <strong>Compactness: </strong>The perimeter^2 / area - 1.0.<br>
+                  <strong>Concavity: </strong>The severity of concave portions of the contour.<br>
+                  <strong>Concave Points: </strong>The number of concave portions of the contour.<br>
+                  <strong>Symmetry: </strong> The symmetry of the tumor.<br>
+                  <strong>Fractal Dimension: </strong>Fractal dimension is a measure of the complexity or "roughness" of a shape, often used to quantify the complexity of tumor boundaries in medical imaging.<br><br>
+                  <strong><i>Note: </i></strong><i>The measurements of various features for breast cancer cells, includes mean, standard error, and worst values. The mean represents the average value of a feature across all the cells in the image, while the worst represents the largest or most extreme value of that feature found in any cell in the image. The standard error measures the variability or uncertainty in the measurements of that feature across cells. These features are often used to diagnose or predict the malignancy of a breast cancer tumor.</i><br>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFIve">
+                  Malaria
+                </button>
+              </h2>
+              <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <b>Sample Input</b><br><br>
+                  <img src="{{ url_for('static', filename='C3thin_original_IMG_20150608_163002_cell_81.png') }}" height="250" alt="Malaria Cell" alt="">
+                  <img src="{{ url_for('static', filename='C39P4thinF_original_IMG_20150622_105554_cell_13.png') }}" height="250" alt="Malaria Cell" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                  Pneumonia
+                </button>
+              </h2>
+              <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <b>Sample Input</b><br><br>
+                  <img src="{{ url_for('static', filename='n p.jpeg') }}" height="250" alt="X-ray" alt="">
+                  <img src="{{ url_for('static', filename='p p.jpeg') }}" height="250" alt="X-ray" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="card text-center">
+        <div class="card-footer text-body-secondary">
+            <a href="https://github.com/exc33ded" target="_blank" style="text-decoration:none; color:black ">Mohammed Sarim</a>
+          </div>
+      </div>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+{% include 'nav(logged).html' %}
+
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/w3.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blue.css') }}">
+    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css"></script>
+    <script src="cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('#myTable').DataTable();
+      });
+    </script>
+    </head>
+    <body>
+        <div class="container">
+<h1>Diabetes History</h1>
+  <table id="myTable" class="table rwd-table table table-striped table-bordered table-sm" cellspacing="0"
+  width="100%">
+    <tbody>
+        <tr>
+            <th>Date</th>
+            <th>Pregnancies</th>
+            <th>Glucose</th>
+            <th>Blood Pressure</th>
+            <th>Skin Thickness</th>
+            <th>Insulin</th>
+            <th>BMI</th>
+            <th>DPF</th>
+            <th>Age</th>
+            <th>Outcome</th>
+            </tr>
+            {% for diabetes in user.diabetes %}
+            <tr>
+                <td>{{ diabetes.date }}</td>
+                <td>{{ diabetes.pregnancies }}</td>
+                <td>{{ diabetes.glucose }}</td>
+                <td>{{ diabetes.bloodpressure }}</td>
+                <td>{{ diabetes.skinthichness }}</td>
+                <td>{{ diabetes.insulin }}</td>
+                <td>{{ diabetes.bmi }}</td>
+                <td>{{ diabetes.dpf }}</td>
+                <td>{{ diabetes.age }}</td>
+                <td>{{ diabetes.outcome }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <br><br>
+  <h3>Output</h3>
+</div>
+    </body>
+    <script>
+      $(document).ready(function () {
+        $('#dtDynamicVerticalScrollExample').DataTable({
+          "scrollY": "50vh",
+          "scrollCollapse": true,
+        });
+        $('.dataTables_length').addClass('bs-select');
+      });
+    </script>

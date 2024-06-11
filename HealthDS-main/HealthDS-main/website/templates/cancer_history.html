@@ -1,0 +1,60 @@
+{% include 'nav(logged).html' %}
+
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/w3.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/blue.css') }}">
+  
+<body>
+        <div class="container">
+<h1>Breast Cancer History</h1>
+  <table id="dtDynamicVerticalScrollExample" class="rwd-table table table-striped table-bordered table-sm" cellspacing="0"
+  width="100%">
+  <div>
+    <tbody>
+      <tr>
+        <th>Date</th>
+        <th>Radius Mean</th>
+        <th>Texture Mean</th>
+        <th>Perimeter Mean</th>
+        <th>Area Mean</th>
+        <th>Smoothness Mean</th>
+        <th>Compactness Mean</th>
+        <th>Concavity Mean</th>
+        <th>Concave Points Mean</th>
+        <th>Symmetry Mean</th>
+        <th>Fractal Dimension Mean</th>
+        <th>Output</th>
+      </tr>
+      {% for bcancer in user.bcancer %}
+      <tr>
+        <th>{{ bcancer.date }}</th>
+        <th>{{ bcancer.radius_mean }}</th>
+        <th>{{ bcancer.texture_mean }}</th>
+        <th>{{ bcancer.perimeter_mean }}</th>
+        <th>{{ bcancer.area_mean }}</th>
+        <th>{{ bcancer.smoothness_mean }}</th>
+        <th>{{ bcancer.compactness_mean }}</th>
+        <th>{{ bcancer.concavity_mean }}</th>
+        <th>{{ bcancer.concave_points_mean }}</th>
+        <th>{{ bcancer.symmetry_mean }}</th>
+        <th>{{ bcancer.fractal_dimension_mean }}</th>
+        <th>{{ bcancer.outcome }}</th>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+        </div>
+  <br><br>
+</div>
+
+    </body>
+    <script>
+      $(document).ready(function () {
+        $('#dtDynamicVerticalScrollExample').DataTable({
+          "scrollY": "50vh",
+          "scrollCollapse": true,
+        });
+        $('.dataTables_length').addClass('bs-select');
+      });
+    </script>
+</head>

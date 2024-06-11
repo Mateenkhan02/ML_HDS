@@ -1,0 +1,64 @@
+{% include 'nav(logged).html' %}
+
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/blue.css') }}">
+    <body>
+        <div class="container">
+<h1>Heart History</h1>
+  <table id="dtDynamicVerticalScrollExample" class="rwd-table table table-striped table-bordered table-sm" cellspacing="0"
+  width="100%">
+    <tbody>
+        <tr>
+            <th>Date</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>C.P</th>
+            <th>Trestbps</th>
+            <th>Chol</th>
+            <th>Fbs</th>
+            <th>Restecg</th>
+            <th>Thalach</th>
+            <th>exang</th>
+            <th>Oldpeak</th>
+            <th>Slope</th>
+            <th>C.A</th>
+            <th>Thal</th>
+            <th>Outcome</th>
+            </tr>
+        
+            {% for heart in user.heart %}
+            <tr>
+        
+                <td>{{ heart.date }}</td>
+                <td>{{ heart.age }}</td>
+                <td>{{ heart.sex }}</td>
+                <td>{{ heart.cp }}</td>
+                <td>{{ heart.trestbps }}</td>
+                <td>{{ heart.chol }}</td>
+                <td>{{ heart.fbs }}</td>
+                <td>{{ heart.restecg }}</td>
+                <td>{{ heart.thalach }}</td>
+                <td>{{ heart.exang }}</td>
+                <td>{{ heart.oldpeak }}</td>
+                <td>{{ heart.slope }}</td>
+                <td>{{ heart.ca }}</td>
+                <td>{{ heart.thal }}</td>
+                <td>{{ heart.outcome }}</td>
+            </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <br><br>
+  <h3>Output</h3>
+</div>
+    </body>
+    <script>
+      $(document).ready(function () {
+        $('#dtDynamicVerticalScrollExample').DataTable({
+          "scrollY": "50vh",
+          "scrollCollapse": true,
+        });
+        $('.dataTables_length').addClass('bs-select');
+      });
+    </script>
+</head>

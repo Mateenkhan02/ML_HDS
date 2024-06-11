@@ -1,0 +1,68 @@
+{% include 'nav(logged).html' %}
+
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/w3.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/blue.css') }}">
+  
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css"></script>
+    <script src="cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('#myTable').DataTable();
+      });
+    </script>
+    </head>
+    <body>
+        <div class="w3-container">
+<h1>Liver Disease History</h1>
+<br><br>
+<div class="w3-container">
+  <table id="myTable" class="table rwd-table table table-striped table-bordered table-sm" cellspacing="0"
+  width="100%">
+    <tbody>
+        <tr>
+            <th>Date</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Total Bilirubin</th>
+            <th>Direct Bilirubin</th>
+            <th>Alkaline Phosphotase</th>
+            <th>Alamine Aminotransferase</th>
+            <th>Aspartate Aminotransferase</th>
+            <th>Total Protiens</th>
+            <th>Albumin</th>
+            <th>Albumin and Globulin_Ratio</th>
+            <th>Outcome</th>
+            </tr>
+            {% for liver in user.liver %}
+            <tr>
+                <td>{{ liver.date }}</td>
+                <td>{{ liver.Age }}</td>
+                <td>{{ liver.sex }}</td>
+                <td>{{ liver.Total_Bilirubin }}</td>
+                <td>{{ liver.Direct_Bilirubin }}</td>
+                <td>{{ liver.Alkaline_Phosphotase }}</td>
+                <td>{{ liver.Alamine_Aminotransferase }}</td>
+                <td>{{ liver.Aspartate_Aminotransferase }}</td>
+                <td>{{ liver.Total_Protiens }}</td>
+                <td>{{ liver.Total_Protiens }}</td>
+                <td>{{ liver.Albumin_and_Globulin_Ratio }}</td>
+                <td>{{ liver.outcome }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  <br><br>
+</div>
+    </body>
+    <script>
+      $(document).ready(function () {
+        $('#dtDynamicVerticalScrollExample').DataTable({
+          "scrollY": "50vh",
+          "scrollCollapse": true,
+        });
+        $('.dataTables_length').addClass('bs-select');
+      });
+    </script>
